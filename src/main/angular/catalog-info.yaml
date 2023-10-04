@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: book02-poi-map-app-frontend
+  description: 'the angular map frontend'
+  annotations:
+    backstage.io/kubernetes-id: book02-poi-map-app-frontend
+    backstage.io/kubernetes-namespace: book02
+    backstage.io/techdocs-ref: dir:.
+    #github.com/project-slug: /book02-map
+  tags:
+    - typescript
+    - angular
+    - book
+    - example
+  links:
+    - url: https://console-openshift-console.apps.cluster-8l688.sandbox1215.opentlc.com/k8s/ns/book02/deployments/book02-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.cluster-8l688.sandbox1215.opentlc.com/#https://gitlab-gitlab/book02-map?che-editor=che-incubator/che-code/latest&devfilePath=src/main/angular/.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://book02-poi-map-app-book02.apps.cluster-8l688.sandbox1215.opentlc.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/dev-user"
+  system: workshop-system-book02
+  consumesApis:
+    - proxy-api-book02
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-book02
+  tags:
+    - backstage
+    - janus-idp
+    - rhdh
+    - book
+spec:
+  owner: "user:default/dev-user"

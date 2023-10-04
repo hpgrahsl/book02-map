@@ -1,0 +1,20 @@
+# -------------------------------------------------
+# DO NOT EDIT THIS
+# doc site and hosting specifics
+site_name: poi-map-docs
+site_description: 'POI Map Component Documentation'
+docs_dir: docs
+repo_url: https://gitlab.com/...
+edit_uri: edit/main/docs
+plugins:
+  - techdocs-core
+# -------------------------------------------------
+
+# -------------------------------------------------
+# CONTENT RELATED -> CHANGE AS NEEDED :)
+nav:
+  - Overview: index.md
+  - Applications: 
+    - Web Frontend: frontend/application.md
+    - Proxy / Facade: proxy/application.md
+# -------------------------------------------------

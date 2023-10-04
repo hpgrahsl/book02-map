@@ -1,0 +1,3 @@
+# Web frontend application
+
+//TODO: write documentation for the quarkus app here...

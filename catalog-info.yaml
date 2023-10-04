@@ -1,0 +1,68 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: book02-poi-map-app-proxy
+  annotations:
+    argocd/app-name: book02-poi-map-app-proxy
+    backstage.io/kubernetes-id: book02-poi-map-app
+    backstage.io/kubernetes-namespace: book02
+    backstage.io/techdocs-ref: dir:.
+    #github.com/project-slug: /book02-map
+    #janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - java
+    - quarkus
+    - maven
+    - book
+    - example
+  links:
+    - url: https://console-openshift-console.apps.cluster-8l688.sandbox1215.opentlc.com/dev-pipelines/ns/book02/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.cluster-8l688.sandbox1215.opentlc.com/k8s/ns/book02/deployments/book02-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.cluster-8l688.sandbox1215.opentlc.com/#https://gitlab-gitlab/book02-map?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/dev-user"
+  system: workshop-system-book02
+  providesApis:
+    - proxy-api-book02
+  consumesApis:
+    - backend-api-book02
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-book02
+  tags:
+    - backstage
+    - janus-idp
+    - rhdh
+    - book
+spec:
+  owner: "user:default/dev-user"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: proxy-api-book02
+  description: API surface exposed to interact with Backends (summit POIs + parks data) via the Gateway
+  links:
+    - url: http://book02-poi-map-app-book02.apps.cluster-8l688.sandbox1215.opentlc.com/q/swagger-ui
+      title: Swagger UI
+      icon: web
+    - url: https://gitlab-gitlab.apps.cluster-8l688.sandbox1215.opentlc.com/summit-lab/book02-map/-/blob/main/src/main/resources/META-INF/openapi.yaml
+      title: API Spec
+      icon: code
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user:default/dev-user"
+  system: workshop-system-book02
+  definition:
+    $text: https://gitlab-gitlab.apps.cluster-8l688.sandbox1215.opentlc.com/summit-lab/book02-map/-/blob/main/src/main/resources/META-INF/openapi.yaml
